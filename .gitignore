@@ -1,0 +1,9 @@
+# sekrety
+klucz_api.txt
+
+# dane wyszukań i ostatnie ustawienia (lokalne)
+wyszukania/
+ostatnie_ustawienia.json
+
+__pycache__/
+*.pyc

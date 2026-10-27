@@ -1,0 +1,44 @@
+INSTRUKCJA: ScrApp.MB
+
+Aplikacja pobiera strony z podanej listy, każdą analizuje w Claude według
+naszego promptu i na końcu pisze raport zbiorczy. Każde wyszukanie ma
+własny katalog.
+
+URUCHOMIENIE
+  Kliknij dwukrotnie "ScrApp.MB.bat".
+  (Wymagane biblioteki są już zainstalowane: anthropic, playwright.)
+  Klucz API jest w pliku klucz_api.txt (sam klucz, jedna linia).
+  Ten plik nie trafia do repozytorium GitHub.
+
+PRACA
+  1. Nazwa wyszukania: od niej zależy nazwa katalogu, np. "BHP online PL".
+  2. Zakładka 1: cel (czego szukamy) oraz lista stron, jeden adres w linii.
+     Linia zaczynająca się od # jest pomijana, "https://" można pominąć.
+  3. Zakładka 2: prompt z cechami, które mają zostać opisane dla każdej strony.
+  4. Zakładka 3: prompt raportu końcowego.
+  5. Ustawienia: liczba podstron na witrynę (wybierane po słowach w linkach,
+     np. cennik, pricing), limit znaków, wysiłek modelu.
+  6. "Start" analizuje strony i pisze raport.
+     "Tylko raport końcowy" pisze raport od nowa z gotowych profili,
+     np. po zmianie promptu raportu.
+     "Stop" zatrzymuje pracę po bieżącym kroku.
+
+KATALOG WYSZUKANIA  (PoC\wyszukania\<nazwa>\)
+  ustawienia.json       cel, lista stron, prompty i ustawienia ("Wczytaj..." je przywraca)
+  surowe\<domena>.txt   teksty pobrane ze stron
+  profile\<domena>.md   analiza każdej witryny
+  profile_wszystkie.md  wszystkie profile w jednym pliku
+  raport_koncowy.md     raport końcowy
+  log.txt               przebieg pracy
+
+WZNAWIANIE
+  Ponowny Start z tą samą nazwą pomija witryny, które mają już profil.
+  Gdy chcemy przeanalizować je od nowa, odznaczamy "Wznawiaj" w Ustawieniach
+  albo usuwamy wybrane pliki z katalogu profile\.
+
+STRONY ZABLOKOWANE
+  Część stron (np. z ochroną Cloudflare) nie wpuszcza automatu. Log pokazuje
+  wtedy [ZABLOKOWANA], a strona nie trafia do Claude. W takiej sytuacji:
+  uruchom ..\uruchom.bat, żeby otworzyć Chrome z portem 9222, wejdź na tę
+  stronę i przejdź weryfikację ręcznie, zaznacz w Ustawieniach "Używaj mojego
+  Chrome" i ponów Start. Ten sam sposób działa dla stron wymagających zalogowania.
