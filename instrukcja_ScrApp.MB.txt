@@ -21,7 +21,25 @@ PRACA
   6. "Start" analizuje strony i pisze raport.
      "Tylko raport końcowy" pisze raport od nowa z gotowych profili,
      np. po zmianie promptu raportu.
-     "Stop" zatrzymuje pracę po bieżącym kroku.
+
+STEROWANIE W TRAKCIE PRACY
+  "Zrezygnuj z bieżącego kroku"  porzuca bieżącą stronę (pobieranie lub
+                                 analizę) i przechodzi do następnej; w czasie
+                                 raportu końcowego porzuca raport.
+  "Zatrzymaj po tej stronie"     kończy pracę, gdy bieżąca strona będzie gotowa.
+  "Zakończ teraz"                przerywa natychmiast. Analiza w Claude zatrzymuje
+                                 się od razu, wczytywanie strony może potrwać do ~20 s.
+  Przerwana analiza nie zapisuje profilu. Pobrane teksty zostają w surowe\,
+  więc ponowny Start nie pobiera ich drugi raz.
+
+PODGLĄD (zakładka "Podgląd", włącza się sama po Starcie)
+  "Na żywo"        to, co dzieje się teraz: teksty pobierane ze strony, a potem
+                   profil lub raport pisany przez Claude słowo po słowie.
+  Raport końcowy, Profile, Surowe teksty
+                   pliki z katalogu wyszukania. Lista i otwarty plik odświeżają
+                   się same co ~1,5 s.
+  Kliknięcie pliku wyłącza "Śledź bieżący krok na żywo", żeby podgląd
+  nie przeskakiwał. Zaznacz to pole albo kliknij "Na żywo", żeby wrócić.
 
 KATALOG WYSZUKANIA  (PoC\wyszukania\<nazwa>\)
   ustawienia.json       cel, lista stron, prompty i ustawienia ("Wczytaj..." je przywraca)
